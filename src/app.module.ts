@@ -5,6 +5,7 @@ import { RolesModule } from './modules/roles/roles.module';
 import { AdminsModule } from './modules/admins/admins.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
+import { PatientsModule } from './modules/patients/patients.module';
 import config from './config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
@@ -49,6 +50,7 @@ import { join } from 'path';
     AdminsModule,
     AuthModule,
     UsersModule,
+    PatientsModule,
   ],
 })
 export class AppModule {}

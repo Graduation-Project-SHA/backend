@@ -59,10 +59,10 @@ model User {
   name         String?
   username     String? @unique
   phone        String?
+  role         UserRole @default(Patient)
 
-  role       UserRole @default(Patient)
-  googleId   String?  @unique
-  facebookId String?  @unique
+  googleId   String? @unique
+  facebookId String? @unique
 
   emailResetCode          String?
   emailResetCodeExpiresAt DateTime?
@@ -74,7 +74,32 @@ model User {
 
   profileImage String?
 
+  patient Patient?
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+
+  @@map("users")
+}
+
+model Patient {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  medicalRecord  String?  @db.Text
+  bloodType      String?
+  allergies      String?  @db.Text
+  chronicDiseases String? @db.Text
+  emergencyContact String?
+  emergencyPhone  String?
+  
+  height         Float?
+  weight         Float?
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("patients")
 }
