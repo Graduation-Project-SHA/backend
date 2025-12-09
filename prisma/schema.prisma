@@ -53,11 +53,11 @@ model RolePermission {
 model User {
   id String @id @default(cuid())
 
-  email        String  @unique
+  email        String   @unique
   password     String?
   refreshToken String?
   name         String?
-  username     String? @unique
+  username     String?  @unique
   phone        String?
   role         UserRole @default(Patient)
 
@@ -84,22 +84,22 @@ model User {
 }
 
 model Patient {
-  id             String   @id @default(cuid())
-  userId         String   @unique
-  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  medicalRecord  String?  @db.Text
-  bloodType      String?
-  allergies      String?  @db.Text
-  chronicDiseases String? @db.Text
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  medicalRecord    String? @db.Text
+  bloodType        String?
+  allergies        String? @db.Text
+  chronicDiseases  String? @db.Text
   emergencyContact String?
-  emergencyPhone  String?
-  
-  height         Float?
-  weight         Float?
-  
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  emergencyPhone   String?
+
+  height Float?
+  weight Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("patients")
 }

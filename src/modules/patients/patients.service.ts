@@ -61,7 +61,9 @@ export class PatientsService {
     });
 
     if (existingPatient) {
-      throw new ConflictException('Patient record already exists for this user');
+      throw new ConflictException(
+        'Patient record already exists for this user',
+      );
     }
 
     const patient = await this.prisma.patient.create({

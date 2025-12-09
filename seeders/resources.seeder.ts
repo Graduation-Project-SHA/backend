@@ -1,12 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 export default async function seedPermissions(prisma: PrismaClient) {
-  const resources = [
-    'admins',
-    'roles',
-    'users',
-    'patients',
-  ];
+  const resources = ['admins', 'roles', 'users', 'patients'];
 
   // await prisma.permission.deleteMany({
   //   where: {
